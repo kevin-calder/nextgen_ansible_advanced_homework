@@ -1,3 +1,3 @@
 ---
-
 # tasks file for osp.servers
+- include_tasks: create-servers.yml

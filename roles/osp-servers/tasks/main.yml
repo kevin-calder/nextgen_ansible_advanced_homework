@@ -1,3 +1,18 @@
 ---
 # tasks file for osp.servers
-- include_tasks: create-servers.yml
+- name: Configuration of Servers
+  os_server:
+    name: "{{ item.value.name }}"
+    state: "{{ item.value.state }}"
+    image: "{{ item.value.image }}"
+    key_name: "{{ item.value.key_name }}"
+    flavor: "{{ item.value.flavor }}"
+    meta: "group={{ item.value.group }},deployment_name={{ item.value.deployment_name }}"
+    security_groups: "{{ item.value.security_group }}"
+    userdata: |
+      #!/bin/bash
+      cat /root/.ssh/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
+      cat /root/.ssh/openstack.pem > /home/cloud-user/.ssh/openstack.pem
+      chmod 0400 /home/cloud-user/.ssh/openstack.pem
+      chmod 0400 /home/cloud-user/.ssh/authorized_keys
+  with_dict: "{{ osp_servers }}"

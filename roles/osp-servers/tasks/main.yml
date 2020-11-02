@@ -2,8 +2,13 @@
 # tasks file for osp.servers
 - name: Configuration of Servers
   os_server:
+    state: "{{ item.value.state }}" 
+    auth:
+      auth_url: http://192.0.2.21:5000
+      username: admin
+      password: r3dh4t1!
+      project_name: admin
     name: "{{ item.value.name }}"
-    state: "{{ item.value.state }}"
     image: "{{ item.value.image }}"
     key_name: "{{ item.value.key_name }}"
     flavor: "{{ item.value.flavor }}"

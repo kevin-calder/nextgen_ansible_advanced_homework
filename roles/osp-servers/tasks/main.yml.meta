@@ -7,8 +7,7 @@
     image: "{{ item.value.image }}"
     key_name: "{{ item.value.key_name }}"
     flavor: "{{ item.value.flavor }}"
-    group: "{{ item.value.meta.group }}
-    deployment_name: "{{ item.value.meta.deployment_name }}"
+    meta: "group={{ item.value.group }},deployment_name={{ item.value.deployment_name }}"
     security_groups: "{{ item.value.security_group }}"
     userdata: |
       #!/bin/bash

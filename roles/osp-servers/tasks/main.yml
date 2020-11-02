@@ -7,6 +7,7 @@
       auth_url: http://192.0.2.21:5000
       username: admin
       password: r3dh4t1!
+      domain_name: Default
       project_name: 00_Homework Assignment
     name: "{{ item.value.name }}"
     image: "{{ item.value.image }}"

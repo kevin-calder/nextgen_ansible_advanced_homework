@@ -2,6 +2,17 @@
 # tasks file for osp.servers
 - name: Configuration of Servers
   os_server:
+  openstack:
+    auth:
+      auth_url: http://192.0.2.21:5000
+      username: "admin"
+      password: "r3dh4t1!"
+      project_id: 4e07f423a12f437388a97a533bb9eef9
+      project_name: "admin"
+      user_domain_name: "Default"
+    region_name: "regionOne"
+    interface: "public"
+    identity_api_version: 3
     state: "{{ item.value.state }}" 
     name: "{{ item.value.name }}"
     image: "{{ item.value.image }}"

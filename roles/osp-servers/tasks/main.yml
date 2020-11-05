@@ -2,7 +2,6 @@
 # tasks file for osp.servers
 - name: Configuration of Servers
   os_server:
-  openstack:
     auth:
       auth_url: http://192.0.2.21:5000
       username: "admin"

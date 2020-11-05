@@ -7,7 +7,9 @@ osp_servers:
     image: rhel-guest
     key_name: ansible_ssh
     flavor: m1.medium
-    network: int_network
+    nics: 
+      - net-name: int_network
+      - net-name: ext_network
     security_group: frontend
     meta:
       - { group: frontends, deployment_name: QA}
@@ -17,7 +19,8 @@ osp_servers:
     image: rhel-guest
     key_name: ansible_ssh
     flavor: m1.medium
-    network: int_network
+    nics: 
+      - net-name: int_network
     security_group: apps
     meta:
       - { group: apps, deployment_name: QA}
@@ -27,7 +30,8 @@ osp_servers:
     image: rhel-guest
     key_name: ansible_ssh
     flavor: m1.medium
-    network: int_network
+    nics: 
+      - net-name: int_network
     security_group: apps
     meta:
       - { group: apps, deployment_name: QA}
@@ -37,7 +41,8 @@ osp_servers:
     image: rhel-guest
     key_name: ansible_ssh
     flavor: m1.medium
-    network: int_network
+    nics: 
+      - net-name: int_network
     security_group: db
     meta:
       - { group: appdbs, deployment_name: QA}

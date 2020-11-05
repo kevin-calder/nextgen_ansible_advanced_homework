@@ -16,7 +16,7 @@
     image: "{{ item.value.image }}"
     key_name: "{{ item.value.key_name }}"
     flavor: "{{ item.value.flavor }}"
-    network: "{{ item.value.network }}"
+    nics: "{{ item.value.nics }}"
     security_groups: "{{ item.value.security_group }}"
     userdata: |
       #!/bin/bash

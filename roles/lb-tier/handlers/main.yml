@@ -4,4 +4,8 @@
   service:
     name: tomcat
     state: started
+  service:
+    name: {{ payload }}
+    state: started
+
 

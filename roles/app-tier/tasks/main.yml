@@ -1,2 +1,8 @@
 ---
 
+- name: Configure Tomcat         
+  template: src=/templates/index.html.j2
+        dest="{{ tomcat_web_root }}"
+        backup=yes
+
+

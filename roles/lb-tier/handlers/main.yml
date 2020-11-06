@@ -5,7 +5,7 @@
     name: tomcat
     state: started
   service:
-    name: {{ payload }}
+    name: haproxy 
     state: started
 
 

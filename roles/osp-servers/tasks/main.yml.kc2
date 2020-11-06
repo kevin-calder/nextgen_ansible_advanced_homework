@@ -18,6 +18,7 @@
     flavor: "{{ item.value.flavor }}"
     nics: "{{ item.value.nics }}"
     security_groups: "{{ item.value.security_group }}"
+    meta: "{{ item.value.meta }}"
     userdata: |
       #!/bin/bash
       cat /root/.ssh/openstack.pub >> /home/cloud-user/.ssh/authorized_keys

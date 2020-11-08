@@ -11,9 +11,7 @@ osp_servers:
       - net-name: int_network
       - net-name: ext_network
     security_group: frontend
-    meta:
-      group: frontends
-      deployment_name: QA
+    meta: "group=frontends,deployment_name=QA"
   app1:
     name: app1
     state: present
@@ -23,9 +21,7 @@ osp_servers:
     nics: 
       - net-name: int_network
     security_group: apps
-    meta:
-      group: apps
-      deployment_name: QA
+    meta: "group=apps,deployment_name=QA"
   app2:
     name: app2
     state: present
@@ -35,9 +31,7 @@ osp_servers:
     nics: 
       - net-name: int_network
     security_group: apps
-    meta:
-      group: apps
-      deployment_name: QA
+    meta: "group=apps,deployment_name=QA"
   db:
     name: db
     state: present
@@ -47,6 +41,4 @@ osp_servers:
     nics: 
       - net-name: int_network
     security_group: db
-    meta:
-      group: appdbs
-      deployment_name: QA
+    meta: "group=appsdbs,deployment_name=QA"

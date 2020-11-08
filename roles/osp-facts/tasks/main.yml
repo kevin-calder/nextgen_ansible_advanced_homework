@@ -5,8 +5,8 @@
       cloud: openstack
      register: result
    - debug: Add host
-     msg: "{{result.openstack_servers}}"
-     with_items: "{{result.openstack_servers}}"
+       var: result
+       verbosity: 2
    - name: Add host
      add_host:
       name: "{{ item.public_v4 }}"

@@ -4,7 +4,7 @@
      os_server_info:
       cloud: openstack
      register: result
-   - debug: Add host
+   - debug: 
        var: result
        verbosity: 2
    - name: Add host

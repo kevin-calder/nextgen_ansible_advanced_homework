@@ -3,16 +3,6 @@
   roles:
   - name: osp-facts
 
-# Setup application servers tier
-
-- name: setup app tier
-  hosts: apps
-  become: yes
-  gather_facts: false
-  roles:
-    - {name: base-config, tags: base-config}
-    - {name: app-tier, tags: [apps, tomcat]}
-
 # Setup front-end load balancer tier
 
 
@@ -22,6 +12,16 @@
   roles:
     - {name: base-config, tags: base-config}
     - {name: lb-tier, tags: [lbs, haproxy]}
+
+# Setup application servers tier
+
+- name: setup app tier
+  hosts: apps
+  become: yes
+  gather_facts: false
+  roles:
+    - {name: base-config, tags: base-config}
+    - {name: app-tier, tags: [apps, tomcat]}
 
 # Setup database tier
 

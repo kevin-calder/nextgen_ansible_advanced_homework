@@ -2,7 +2,6 @@
 # tasks file for roles/osp-instance-delete
 #  - name: Fetch Instance Info
 
----
 # tasks file for osp.servers
 - name: Delete instances
   os_server:

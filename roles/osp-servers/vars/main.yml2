@@ -9,6 +9,7 @@ osp_servers:
     flavor: m1.medium
     nics: 
       - net-name: int_network
+      - net-name: ext_network
     security_group: frontend
     meta: "group=frontends,deployment_name=QA"
   app1:
@@ -19,6 +20,7 @@ osp_servers:
     flavor: m1.medium
     nics: 
       - net-name: int_network
+      - net-name: ext_network
     security_group: apps
     meta: "group=apps,deployment_name=QA"
   app2:
@@ -29,6 +31,7 @@ osp_servers:
     flavor: m1.medium
     nics: 
       - net-name: int_network
+      - net-name: ext_network
     security_group: apps
     meta: "group=apps,deployment_name=QA"
   db:
@@ -39,5 +42,6 @@ osp_servers:
     flavor: m1.medium
     nics: 
       - net-name: int_network
+      - net-name: ext_network
     security_group: db
     meta: "group=appsdbs,deployment_name=QA"

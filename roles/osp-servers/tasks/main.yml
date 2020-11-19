@@ -1,24 +1,16 @@
 ---
+
 # tasks file for osp.servers
 - name: Configuration of Servers
   os_server:
-    auth:
-      auth_url: http://192.0.2.21:5000
-      username: "admin"
-      password: "r3dh4t1!"
-      project_id: 4e07f423a12f437388a97a533bb9eef9
-      project_name: "admin"
-      user_domain_name: "Default"
-    region_name: "regionOne"
-    interface: "public"
-    state: "{{ item.value.state }}" 
     name: "{{ item.value.name }}"
     image: "{{ item.value.image }}"
     key_name: "{{ item.value.key_name }}"
     flavor: "{{ item.value.flavor }}"
-    meta: "{{ item.value.meta }}"
-    nics: "{{ item.value.nics }}"
     security_groups: "{{ item.value.security_group }}"
+    meta: "{{ item.value.meta }}"
+    nics:
+      - net-name: int_network
     userdata: |
       #!/bin/bash
       cat /root/.ssh/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
@@ -28,3 +20,39 @@
       chmod 0400 /home/cloud-user/.ssh/mykey.pem
       chmod 0400 /home/cloud-user/.ssh/authorized_keys
   with_dict: "{{ osp_servers }}"
+
+
+- name: Add floating IP to Servers
+  os_floating_ip:
+    cloud: openstack
+    state: present
+    reuse: yes
+    server: "{{ item.value.name }}"
+    network: ext_network
+    wait: true
+    timeout: 200
+  with_dict: "{{osp_servers}}"
+  tags:
+  - test.servers
+
+
+- name: OpenStack servers
+  os_server_info:
+    cloud: openstack
+  register: result
+  tags:
+    - test.servers
+
+- name: Wait for server to be available
+  wait_for:
+    host: "{{ item.public_v4 }}"
+    port: 22
+    search_regex: OpenSSH
+    timeout: 600
+  delegate_to: "{{ inventory_hostname }}"
+  with_items:
+    - "{{ result.openstack_servers }}"
+  tags:
+    - test.servers
+
+

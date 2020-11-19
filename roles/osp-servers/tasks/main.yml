@@ -66,24 +66,3 @@
   register: result
   tags:
     - test.servers
-
-- name: Wait for server to be available
-  wait_for:
-    auth:
-      auth_url: http://192.0.2.21:5000
-      username: "admin"
-      password: "r3dh4t1!"
-      project_id: 4e07f423a12f437388a97a533bb9eef9
-      project_name: "admin"
-      user_domain_name: "Default"
-    host: "{{ item.public_v4 }}"
-    port: 22
-    search_regex: OpenSSH
-    timeout: 600
-  delegate_to: "{{ inventory_hostname }}"
-  with_items:
-    - "{{ result.openstack_servers }}"
-  tags:
-    - test.servers
-
-

@@ -8,6 +8,7 @@ osp_servers:
     key_name: ansible_ssh
     flavor: m1.medium
     nics: 
+      - net-name: ext_network
       - net-name: int_network
     security_group: frontend
     meta: "group=frontends,deployment_name=QA"
@@ -18,6 +19,7 @@ osp_servers:
     key_name: ansible_ssh
     flavor: m1.medium
     nics: 
+      - net-name: ext_network
       - net-name: int_network
     security_group: apps
     meta: "group=apps,deployment_name=QA"
@@ -28,6 +30,7 @@ osp_servers:
     key_name: ansible_ssh
     flavor: m1.medium
     nics: 
+      - net-name: ext_network
       - net-name: int_network
     security_group: apps
     meta: "group=apps,deployment_name=QA"
@@ -38,6 +41,7 @@ osp_servers:
     key_name: ansible_ssh
     flavor: m1.medium
     nics: 
+      - net-name: ext_network
       - net-name: int_network
     security_group: db
     meta: "group=appsdbs,deployment_name=QA"

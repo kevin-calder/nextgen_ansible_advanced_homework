@@ -12,6 +12,11 @@
        frontend_ip: "{{ item.public_v4 }}"
     with_items: "{{ result.openstack_servers }}"
     when: '"frontend" in item.name'
+    register: frontend_ip_result
+
+  - name: debug
+    debug:
+     var:  frontend_ip_result
 
   - name: Curl website
     uri:
@@ -19,10 +24,6 @@
       return_content: yes
       status_code: 200
     register: webpage
-
-  - name: debug
-    debug:
-     var:  webpage
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:

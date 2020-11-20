@@ -6,16 +6,17 @@
       cloud: openstack
     register: result
 
-  - name: debug
-    debug:
-     var:  result
-
 
   - name: set ip address
     set_fact:
        frontend_ip: "{{ item.public_v4 }}"
     with_items: "{{ result.openstack_servers }}"
     when: '"frontend" in item.name'
+    register frontend_ip_result
+
+  - name: debug
+    debug:
+     var:  frontend_ip_result
 
   - name: Curl website
     uri:

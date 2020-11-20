@@ -1,0 +1,9 @@
+---
+
+- name: Update HAProxy config
+  template: 
+    src=templates/haproxy.cfg.j2
+    dest=/etc/haproxy/haproxy.cfg 
+    backup=yes
+
+

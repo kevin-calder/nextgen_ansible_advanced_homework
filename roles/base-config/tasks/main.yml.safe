@@ -1,0 +1,22 @@
+---
+# Initial, common, system setup steps
+
+- name: enable sudo without tty for some ansible commands
+  replace:
+    path: /etc/sudoers
+    regexp: '^Defaults\s*requiretty'
+    replace: 'Defaults  !requiretty'
+    backup: yes
+
+- name: enable repos
+  yum_repository:
+    name: rhel7
+    description: RHEL7 YUM repo
+    file: external_repos
+    baseurl: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
+    gpgcheck: no
+
+- name: install base tools and packages
+  yum: name=haproxy state=latest update_cache=true
+  yum: name=tomcat state=latest update_cache=true
+

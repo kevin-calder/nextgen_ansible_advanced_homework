@@ -32,4 +32,4 @@ osp_servers:
     key_name: ansible_ssh
     flavor: m1.medium
     security_group: db
-    meta: "group=appsdbs,deployment_name=QA"
+    meta: "group=appdbs,deployment_name=QA"

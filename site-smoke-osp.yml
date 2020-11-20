@@ -12,7 +12,7 @@
        frontend_ip: "{{ item.public_v4 }}"
     with_items: "{{ result.openstack_servers }}"
     when: '"frontend" in item.name'
-    register frontend_ip_result
+    register: frontend_ip_result
 
   - name: debug
     debug:

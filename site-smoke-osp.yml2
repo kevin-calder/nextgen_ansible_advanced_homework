@@ -6,11 +6,6 @@
       cloud: openstack
     register: result
 
-  - name: debug
-    debug:
-     var:  result
-
-
   - name: set ip address
     set_fact:
        frontend_ip: "{{ item.public_v4 }}"
@@ -23,6 +18,10 @@
       return_content: yes
       status_code: 200
     register: webpage
+
+  - name: debug
+    debug:
+     var:  webpage.results
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:

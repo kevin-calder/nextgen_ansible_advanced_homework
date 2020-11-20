@@ -1,6 +1,6 @@
 ---
 
-- name: start tomcat
+- name: restart tomcat
   service:
     name: "{{ payload }}"
     state: restarted
